@@ -18,7 +18,6 @@ class LanguagePack::Helpers::BundlerWrapper
   attr_reader   :bundler_path
 
   def initialize(options = {})
-    puts "BUNDLER PWD: #{Dir.pwd}"
     @fetcher              = options[:fetcher]      || DEFAULT_FETCHER
     @bundler_path         = options[:bundler_path] || File.join(Dir.mktmpdir, "#{BUNDLER_DIR_NAME}")
     @gemfile_path         = options[:gemfile_path] || GEMFILE_PATH
