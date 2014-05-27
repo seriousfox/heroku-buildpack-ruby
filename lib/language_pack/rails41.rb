@@ -8,6 +8,7 @@ class LanguagePack::Rails41 < LanguagePack::Rails4
   def self.use?
     instrument "rails4.use" do
       rails_version = bundler.gem_version('railties')
+      puts "NO RAILS 4.1? [#{rails_version}]"
       return false unless rails_version
       is_rails4 = rails_version >= Gem::Version.new('4.1.0.beta1') &&
                   rails_version <  Gem::Version.new('5.0.0')
