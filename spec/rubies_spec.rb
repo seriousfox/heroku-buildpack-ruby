@@ -54,8 +54,10 @@ describe "Ruby Versions" do
     end
   end
 
-  it "should deploy jruby 1.7.3 (legacy jdk) properly" do
-    Hatchet::AnvilApp.new("ruby_193_jruby_173").deploy do |app|
+  it "should deploy jruby 1.7.3 (legacy jdk) properly on cedar" do
+    app = Hatchet::AnvilApp.new("ruby_193_jruby_173").setup!
+    app.heroku.put_stack(app.name, "cedar")
+    app.deploy do |app, heroku|
       expect(app.output).to match("Installing JVM: openjdk1.7.0_25")
       expect(app.output).to match("ruby-1.9.3-jruby-1.7.3")
       expect(app.output).not_to include("OpenJDK 64-Bit Server VM warning")
